@@ -35,7 +35,7 @@ $c"; done
 elif checkcommand glxinfo; then
 	TOTALVRAM=$(glxinfo | grep -A2 -i GL_NVX_gpu_memory_info | egrep -i "dedicated" | cut -f2- -d ':' | gawk '{print $1}')
 	AVAILVRAM=$(glxinfo | grep -A4 -i GL_NVX_gpu_memory_info | egrep -i "available dedicated" | cut -f2- -d ':' | gawk '{print $1}')
-	let FREEVRAM=TOTALVRAM-AVAILVRAM
+	FREEVRAM=$((TOTALVRAM-AVAILVRAM))
 	echo "$TOTALVRAM"
 	echo "$FREEVRAM"
 fi
